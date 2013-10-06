@@ -1,0 +1,46 @@
+{
+  "name": "grunt-messageformat-amd",
+  "description": "Compile MessageFormat JSON files to JS AMD files.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/morkai/grunt-messageformat-amd",
+  "author": {
+    "name": "Łukasz Walukiewicz",
+    "email": "lukasz@walukiewicz.eu",
+    "url": "http://lukasz.walukiewicz.eu/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/morkai/grunt-messageformat-amd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/morkai/grunt-messageformat-amd/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/morkai/grunt-messageformat-amd/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": "~0.10.18"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "messageformat-amd": "git://github.com/morkai/messageformat-amd.git"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin",
+    "messageformat",
+    "amd"
+  ]
+}
