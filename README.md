@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt `~0.4.2`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -77,6 +77,17 @@ and will result in the following objects for the specific JSON files:
   - `nls/module-b.json`: `{locale: 'root', domain: 'module-b'}`
   - `nls/pl/module-a.json`: `{locale: 'pl', domain: 'module-a'}`
   - `nls/pl/module-b.json`: `{locale: 'pl', domain: 'module-b'}`
+
+#### options.includeJs
+
+Type: `String`
+Default value: Contents of the `messageformat/lib/messageformat.include.js` file, if it can
+be resolved; `null` otherwise.
+
+JavaScript code to include between the locale definition and the returned translation messages
+in the compiled file.
+
+Used to include a common JS code required by the messageformat.js module since version 0.1.8.
 
 ### Usage Examples
 

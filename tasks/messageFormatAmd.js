@@ -1,5 +1,6 @@
 'use strict';
 
+var readFileSync = require('fs').readFileSync;
 var path = require('path');
 var nlsLib = require('messageformat-amd').nlsLib;
 
@@ -11,8 +12,14 @@ module.exports = function(grunt)
       destDir: 'nls/',
       localeModulePrefix: 'nls/locale/',
       rootLocale: 'en',
-      resolveLocaleAndDomain: resolveLocaleAndDomain
+      resolveLocaleAndDomain: resolveLocaleAndDomain,
+      includeJs: null
     });
+
+    if (typeof options.includeJs !== 'string')
+    {
+      options.includeJs = resolveDefaultIncludeJs();
+    }
 
     this.files.forEach(function(f)
     {
@@ -66,7 +73,8 @@ module.exports = function(grunt)
           var wrappedNlsJs = nlsLib.wrap(
             options.localeModulePrefix,
             localeAndDomain.locale,
-            nlsJs
+            nlsJs,
+            options.includeJs
           );
 
           var wrappedNlsFile = localeAndDomain.locale === options.rootLocale
@@ -95,5 +103,28 @@ module.exports = function(grunt)
       locale: locale === 'nls' ? 'root' : locale,
       domain: path.basename(jsonFile, '.json')
     };
+  }
+
+  /**
+   * @private
+   * @returns {string|null}
+   */
+  function resolveDefaultIncludeJs()
+  {
+    var includeJs = null;
+
+    try
+    {
+      includeJs = readFileSync(
+        require.resolve('messageformat/lib/messageformat.include.js'),
+        'utf8'
+      );
+    }
+    catch (err)
+    {
+      grunt.log.warn("Couldn't resolve a default value for the includeJs option: " + err.message);
+    }
+
+    return includeJs;
   }
 };
