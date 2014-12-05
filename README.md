@@ -4,9 +4,12 @@
 
 ## Getting Started
 
-This plugin requires Grunt `~0.4.2`
+This plugin requires Grunt `~0.4.5`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out
+the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create
+a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
+Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install git://github.com/morkai/grunt-messageformat-amd --save-dev
@@ -22,7 +25,8 @@ grunt.loadNpmTasks('grunt-messageformat-amd');
 
 _Run this task with the `grunt messageformatAmd` command._
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+Task targets, files and options may be specified according to the grunt
+[Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 ### Options
 
@@ -56,7 +60,7 @@ The `root` locale will be replaced with the specified one.
 Type: `Function(String): {{locale: String, domain: String}}`
 Default value: `null`
 
-A function that takes a path to the MessageFormat JSON file and should return an
+A function that takes a path to the MessageFormat JSON file and returns an
 object with the `locale` and the `domain` properties extracted from the specified
 JSON file path.
 
@@ -80,12 +84,10 @@ and will result in the following objects for the specific JSON files:
 
 #### options.includeJs
 
-Type: `String`
-Default value: Contents of the `messageformat/lib/messageformat.include.js` file, if it can
-be resolved; `null` otherwise.
+Type: `Function(String): String`
+Default value: A function that combines a result of `MessageFormat.globalName` and `MessageFormat.functions()`.
 
-JavaScript code to include between the locale definition and the returned translation messages
-in the compiled file.
+JavaScript code to include before the returned translation messages in the compiled file.
 
 Used to include a common JS code required by the messageformat.js module since version 0.1.8.
 
@@ -139,7 +141,8 @@ under the `./build/frontend` directory to AMD format and write them to:
 
 _Run this task with the `grunt messageformatAmdLocale` command._
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+Task targets, files and options may be specified according to the grunt
+[Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 ### Options
 

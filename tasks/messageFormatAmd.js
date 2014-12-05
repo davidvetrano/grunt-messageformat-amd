@@ -1,7 +1,11 @@
+// Copyright (c) 2014, Łukasz Walukiewicz <lukasz@walukiewicz.eu>. Some Rights Reserved.
+// Licensed under the MIT License <http://opensource.org/licenses/MIT>.
+// Part of the grunt-messageformat-amd project <http://lukasz.walukiewicz.eu/p/grunt-messageformat-amd>
+
 'use strict';
 
-var readFileSync = require('fs').readFileSync;
 var path = require('path');
+var MessageFormat = require('messageformat');
 var nlsLib = require('messageformat-amd').nlsLib;
 
 module.exports = function(grunt)
@@ -16,9 +20,17 @@ module.exports = function(grunt)
       includeJs: null
     });
 
-    if (typeof options.includeJs !== 'string')
+    if (typeof options.includeJs !== 'function')
     {
-      options.includeJs = resolveDefaultIncludeJs();
+      options.includeJs = function(locale)
+      {
+        var mf = new MessageFormat(locale, function(n)
+        {
+          return locale(n);
+        });
+
+        return 'var ' + mf.globalName + ' = ' + mf.functions() + ';';
+      };
     }
 
     this.files.forEach(function(f)
@@ -103,28 +115,5 @@ module.exports = function(grunt)
       locale: locale === 'nls' ? 'root' : locale,
       domain: path.basename(jsonFile, '.json')
     };
-  }
-
-  /**
-   * @private
-   * @returns {string|null}
-   */
-  function resolveDefaultIncludeJs()
-  {
-    var includeJs = null;
-
-    try
-    {
-      includeJs = readFileSync(
-        require.resolve('messageformat/lib/messageformat.include.js'),
-        'utf8'
-      );
-    }
-    catch (err)
-    {
-      grunt.log.warn("Couldn't resolve a default value for the includeJs option: " + err.message);
-    }
-
-    return includeJs;
   }
 };
