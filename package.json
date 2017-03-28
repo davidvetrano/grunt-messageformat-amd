@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "messageformat": "~0.2.1",
-    "messageformat-amd": "git://github.com/morkai/messageformat-amd.git#d41fd5caba"
+    "messageformat-amd": "git://github.com/davidvetrano/messageformat-amd.git"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "1",
